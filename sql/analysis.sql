@@ -21,3 +21,10 @@ SELECT
 FROM sales
 GROUP BY customer
 ORDER BY total_spent DESC;
+
+-- 5. Order count and average order value
+SELECT
+    COUNT(*) AS total_orders,
+    SUM(revenue) AS total_revenue,
+    AVG(revenue) AS average_order_value
+FROM sales;

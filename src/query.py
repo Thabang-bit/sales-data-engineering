@@ -39,5 +39,13 @@ print(connection.execute("""
     ORDER BY total_spent DESC
 """).fetchdf())
 
+print("\nORDER METRICS")
+print(connection.execute("""
+    SELECT
+        COUNT(*) AS total_orders,
+        SUM(revenue) AS total_revenue,
+        AVG(revenue) AS average_order_value
+    FROM sales
+""").fetchdf())
 
 connection.close()
