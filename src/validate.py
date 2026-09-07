@@ -26,5 +26,9 @@ def validate_data(df):
 
     if (df["price"] <= 0).any():
         raise ValueError("Price must be greater than 0")
+    
+        # Check for duplicate order IDs
+    if df["order_id"].duplicated().any():
+        raise ValueError("Order IDs must be unique")
 
     return True

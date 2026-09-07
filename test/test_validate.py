@@ -42,3 +42,16 @@ def test_validate_data_rejects_missing_column():
 
     with pytest.raises(ValueError):
         validate_data(data)
+        
+def test_validate_data_rejects_duplicate_order_ids():
+    data = pd.DataFrame({
+        "order_id": [1, 1],
+        "customer": ["Thabang", "John"],
+        "product": ["Laptop", "Mouse"],
+        "quantity": [1, 2],
+        "price": [12000, 350],
+        "date": ["2026-09-01", "2026-09-01"]
+    })
+
+    with pytest.raises(ValueError):
+        validate_data(data)
