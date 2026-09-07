@@ -31,3 +31,18 @@ def test_transform_calculates_revenue():
     result = transform_data(data)
 
     assert result.iloc[0]["revenue"] == 24000
+    
+def test_transform_empty_dataframe():
+    data = pd.DataFrame(columns=[
+        "order_id",
+        "customer",
+        "product",
+        "quantity",
+        "price",
+        "date"
+    ])
+
+    result = transform_data(data)
+
+    assert result.empty
+    assert "revenue" in result.columns    
