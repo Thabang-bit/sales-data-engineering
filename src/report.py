@@ -24,5 +24,20 @@ print(f"Total orders: {total_orders}")
 print(f"Total revenue: R{total_revenue:,.2f}")
 print(f"Average order value: R{average_order_value:,.2f}")
 
+print("\nREVENUE BY PRODUCT")
+print("====================")
+
+products = connection.execute("""
+    SELECT
+        product,
+        SUM(revenue) AS total_revenue
+    FROM sales
+    GROUP BY product
+    ORDER BY total_revenue DESC
+""").fetchall()
+
+for product, revenue in products:
+    print(f"{product}: R{revenue:,.2f}")
+
 
 connection.close()
