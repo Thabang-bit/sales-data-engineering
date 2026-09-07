@@ -3,12 +3,41 @@ import duckdb
 
 connection = duckdb.connect("sales.duckdb")
 
-with open("sql/analysis.sql", "r") as file:
-    sql = file.read()
 
-results = connection.execute(sql).fetchall()
+print("ALL SALES")
+print(connection.execute("""
+    SELECT *
+    FROM sales
+""").fetchdf())
 
-for row in results:
-    print(row)
+
+print("\nTOTAL REVENUE")
+print(connection.execute("""
+    SELECT SUM(revenue) AS total_revenue
+    FROM sales
+""").fetchdf())
+
+
+print("\nREVENUE BY PRODUCT")
+print(connection.execute("""
+    SELECT
+        product,
+        SUM(revenue) AS total_revenue
+    FROM sales
+    GROUP BY product
+    ORDER BY total_revenue DESC
+""").fetchdf())
+
+
+print("\nREVENUE BY CUSTOMER")
+print(connection.execute("""
+    SELECT
+        customer,
+        SUM(revenue) AS total_spent
+    FROM sales
+    GROUP BY customer
+    ORDER BY total_spent DESC
+""").fetchdf())
+
 
 connection.close()
