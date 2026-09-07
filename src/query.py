@@ -48,4 +48,14 @@ print(connection.execute("""
     FROM sales
 """).fetchdf())
 
+print("\nDAILY REVENUE")
+print(connection.execute("""
+    SELECT
+        date,
+        SUM(revenue) AS daily_revenue
+    FROM sales
+    GROUP BY date
+    ORDER BY date
+""").fetchdf())
+
 connection.close()

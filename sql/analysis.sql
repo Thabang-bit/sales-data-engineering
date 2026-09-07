@@ -28,3 +28,11 @@ SELECT
     SUM(revenue) AS total_revenue,
     AVG(revenue) AS average_order_value
 FROM sales;
+
+-- 6. Revenue by date
+SELECT
+    date,
+    SUM(revenue) AS daily_revenue
+FROM sales
+GROUP BY date
+ORDER BY date;
