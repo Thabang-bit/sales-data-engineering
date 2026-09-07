@@ -1,0 +1,10 @@
+order_id,customer,product,quantity,price,date
+1,Thabang,Laptop,1,12000,2026-09-01
+2,John,Mouse,2,350,2026-09-01
+3,Sarah,Keyboard,1,800,2026-09-02
+4,Mike,Monitor,2,3000,2026-09-02
+5,Linda,Mouse,3,350,2026-09-03
+6,,Laptop,1,12000,2026-09-04
+7,Peter,Mouse,,350,2026-09-04
+8,James,Keyboard,1,,2026-09-05
+9,Thabang,Laptop,1,12000,2026-09-01
