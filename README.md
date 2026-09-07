@@ -21,6 +21,8 @@ Raw CSV
    ↓
 Extract
    ↓
+Validate
+   ↓
 Transform
    ↓
 DuckDB
@@ -57,7 +59,13 @@ How It Works
 
 The extract.py module reads the raw sales data from the CSV file using Pandas.
 
-2. Transform
+2. Validate
+
+The `validate.py` module checks that the required columns exist and that sales quantities and prices are greater than zero.
+
+Invalid data is rejected before it reaches the transformation and loading stages.
+
+3. Transform
 
 The transform.py module:
 
@@ -67,11 +75,11 @@ Calculates revenue for each order
 Revenue is calculated using:
 
 revenue = quantity × price
-3. Load
+4. Load
 
 The load.py module loads the cleaned data into a DuckDB database.
 
-4. Analyse
+5. Analyse
 
 SQL queries are used to analyse the sales data, including:
 
