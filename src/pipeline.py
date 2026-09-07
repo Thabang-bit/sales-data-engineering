@@ -13,20 +13,26 @@ logging.basicConfig(
 
 def main():
     logging.info("Starting sales data pipeline")
+    
+    try:
+        # Extract
+        df = extract_data()
+        logging.info("Extracted %d rows", len(df))
 
-    # Extract
-    df = extract_data()
-    logging.info("Extracted %d rows", len(df))
+        # Transform
+        clean_df = transform_data(df)
+        logging.info("Transformed data: %d rows remaining", len(clean_df))
 
-    # Transform
-    clean_df = transform_data(df)
-    logging.info("Transformed data: %d rows remaining", len(clean_df))
+        # Load
+        load_data(clean_df)
+        logging.info("Data successfully loaded into DuckDB")
 
-    # Load
-    load_data(clean_df)
-    logging.info("Data successfully loaded into DuckDB")
-
-    logging.info("Pipeline completed successfully")
+        logging.info("Pipeline completed successfully")
+        
+        
+    except Exception:
+            logging.exception("Pipeline failed")
+            raise
 
 
 if __name__ == "__main__":
