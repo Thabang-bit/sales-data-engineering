@@ -3,6 +3,7 @@ import logging
 from extract import extract_data
 from transform import transform_data
 from load import load_data
+from validate import validate_data
 
 
 logging.basicConfig(
@@ -18,6 +19,9 @@ def main():
         # Extract
         df = extract_data()
         logging.info("Extracted %d rows", len(df))
+        
+        validate_data(df)
+        logging.info("Data validation passed")
 
         # Transform
         clean_df = transform_data(df)
