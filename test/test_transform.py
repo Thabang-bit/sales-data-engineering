@@ -46,3 +46,18 @@ def test_transform_empty_dataframe():
 
     assert result.empty
     assert "revenue" in result.columns    
+    
+def test_transform_removes_invalid_sales():
+    data = pd.DataFrame({
+        "order_id": [1, 2, 3],
+        "customer": ["Thabang", "John", "Sarah"],
+        "product": ["Laptop", "Mouse", "Keyboard"],
+        "quantity": [1, -2, 3],
+        "price": [12000, 350, -800],
+        "date": ["2026-09-01", "2026-09-01", "2026-09-02"]
+    })
+
+    result = transform_data(data)
+
+    assert len(result) == 1
+    assert result.iloc[0]["order_id"] == 1    
