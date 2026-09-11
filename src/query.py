@@ -10,14 +10,14 @@ print(connection.execute("""
     FROM sales
 """).fetchdf())
 
-
+# this ask how much money did we make?
 print("\nTOTAL REVENUE")
 print(connection.execute("""
     SELECT SUM(revenue) AS total_revenue
     FROM sales
 """).fetchdf())
 
-
+#to find revenue per product.
 print("\nREVENUE BY PRODUCT")
 print(connection.execute("""
     SELECT
